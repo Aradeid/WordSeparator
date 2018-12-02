@@ -2978,6 +2978,7 @@ schieds
 schiefer
 schienen
 schiess
+schiff
 schiffer
 schifffahrts
 schiffs
