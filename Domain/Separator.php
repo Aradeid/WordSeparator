@@ -6,19 +6,22 @@ require("FileReader.php");
 
 class Separator {
 	private $wordManager;
+	private $debug;
 	
 	function __construct($path) {
 		$this->wordManager = new FileReader($path);
 	}
 	
 	function separate($compositeWord, $debug = false) { // TODO: externally check if this is a single word with no special characters
+		$this->debug = $debug;
+	
 		$words = array();
 		$currIndex = 0;
 		
 		while (($word = $this->getWord($compositeWord, $currIndex)) 
-				&& $currIndex < strlen($compositeWord)) {
+				&& $currIndex <= strlen($compositeWord)) {
 			$words[] = $word;
-			if ($debug) { echo("<p>$word FOUND</p>"); }
+			if ($this->debug) { echo("<p>$word FOUND</p>"); }
 		}
 		
 		return $words;
@@ -60,23 +63,23 @@ class Separator {
 	private function getWordFor($size, $string, &$currIndex) {
 		$this->resetFromAndToFor($from, $to, $size);
 		
-		if ($debug) { echo("<p>Current size: $size</p>"); }
+		if ($this->debug) { echo("<p>Current size: $size</p>"); }
 		while ($from <= $to && $currIndex < strlen($string)) {
 			$midpoint = (int) floor(($from + $to) / 2);
-			if ($debug) { echo("<p>$currIndex & $from - $midpoint - $to</p>"); }
+			if ($this->debug) { echo("<p>$currIndex & $from - $midpoint - $to</p>"); }
 			
 			// created temporary versions for values that have to be called/parsed multiple times
 			$tempWord = $this->wordManager->getAt($size, $midpoint);
-			if ($debug) { echo("<p>$tempWord" . "</p>"); }
+			if ($this->debug) { echo("<p>$tempWord" . "</p>"); }
 			$tempString = substr($string, $currIndex, strlen($tempWord));
-			if ($debug) { echo("<p>$tempString</p>"); }
+			if ($this->debug) { echo("<p>$tempString</p>"); }
 			
 			if ($tempWord < $tempString) {
 				$from = $midpoint + 1;
 			} elseif ($tempWord > $tempString) {
 				$to = $midpoint - 1;
 			} else {
-				if ($debug) { echo("<p>SUCCESS</p>"); }
+				if ($this->debug) { echo("<p>SUCCESS</p>"); }
 				$currIndex += strlen($tempWord);
 				return $tempWord;
 			}
