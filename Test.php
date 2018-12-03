@@ -1,5 +1,9 @@
 <?php
 
+/*
+	Designed as a small playground to try out different internal functions
+*/
+
 // 1 == wordManager; 2 == Separator
 $testMode = 2;
 
@@ -15,7 +19,7 @@ if ($testMode == 1) { $wordsManager = new \WordSeparator\Domain\FileReader("data
 	<?php
 		if ($testMode == 1) { $wordsManager->printAll(true, true); }
 		if ($testMode == 2) { 
-			$words = $separator->separate("donaudampfschiffkapitän");
+			$words = $separator->separate("olivenöl", true);
 		
 			foreach($words as $word) {
 				echo("<p>$word</p>");

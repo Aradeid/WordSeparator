@@ -14,6 +14,7 @@ class Separator {
 	
 	function separate($compositeWord, $debug = false) { // TODO: externally check if this is a single word with no special characters
 		$this->debug = $debug;
+		//$compositeWord = strtolower($compositeWord); // obliterates non-ASCII characters
 	
 		$words = array();
 		$currIndex = 0;
