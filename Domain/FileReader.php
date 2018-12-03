@@ -26,7 +26,7 @@ class FileReader {
 			}
 			
 		} else {
-			echo("Failed to open file '$path'");
+			throw new Exception("Failed to open file '$path'");
 		}
 	}
 	
