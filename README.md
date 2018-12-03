@@ -2,7 +2,7 @@
 "Homework" mini-project for the Findologic aptitude test
 
 HOW TO USE:
-Open the index.php file on a local server. 
+Open the index.php file on a local server (I used Apache). 
 Insert your composite word.
 Press the button.
 Get the result.
